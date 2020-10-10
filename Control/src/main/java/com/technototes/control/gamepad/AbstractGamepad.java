@@ -41,38 +41,61 @@ public abstract class AbstractGamepad<T extends GamepadButton, U extends Gamepad
                 leftTrigger, rightTrigger, leftStick, rightStick, dpad};
     }
     //to actually instantiate the objects
+
     public void setComponents(Gamepad g) throws InstantiationException, IllegalAccessException {
+
         //buttons
-        a = (T) buttonClass.newInstance().setSupplier(() -> g.a);
-        b = (T) buttonClass.newInstance().setSupplier(() -> g.b);
-        x = (T) buttonClass.newInstance().setSupplier(() -> g.x);
-        y = (T) buttonClass.newInstance().setSupplier(() -> g.y);
-        start = (T) buttonClass.newInstance().setSupplier(() -> g.start);
-        back = (T) buttonClass.newInstance().setSupplier(() -> g.back);
+        a = buttonClass.newInstance();
+        a.setSupplier(() -> g.a);
+        b = buttonClass.newInstance();
+        b.setSupplier(() -> g.b);
+        x = buttonClass.newInstance();
+        x.setSupplier(() -> g.x);
+        y = buttonClass.newInstance();
+        y.setSupplier(() -> g.y);
+
+        start = buttonClass.newInstance();
+        start.setSupplier(() -> g.start);
+        back = buttonClass.newInstance();
+        back.setSupplier(() -> g.back);
 
         //bumpers
-        leftBumper = (T) buttonClass.newInstance().setSupplier(() -> g.left_bumper);
-        rightBumper = (T) buttonClass.newInstance().setSupplier(() -> g.right_bumper);
+        leftBumper = buttonClass.newInstance();
+        leftBumper.setSupplier(() -> g.left_bumper);
+        rightBumper = buttonClass.newInstance();
+        rightBumper.setSupplier(() -> g.right_bumper);
 
         //dpad
-        dpadUp = (T) buttonClass.newInstance().setSupplier(() -> g.dpad_up);
-        dpadDown = (T) buttonClass.newInstance().setSupplier(() -> g.dpad_down);
-        dpadLeft = (T) buttonClass.newInstance().setSupplier(() -> g.dpad_left);
-        dpadRight = (T) buttonClass.newInstance().setSupplier(() -> g.dpad_right);
+        dpadUp = buttonClass.newInstance();
+        dpadUp.setSupplier(() -> g.dpad_up);
+        dpadDown = buttonClass.newInstance();
+        dpadDown.setSupplier(() -> g.dpad_up);
+        dpadLeft = buttonClass.newInstance();
+        dpadLeft.setSupplier(() -> g.dpad_left);
+        dpadRight = buttonClass.newInstance();
+        dpadRight.setSupplier(() -> g.dpad_right);
 
         //left stick
-        leftStickX = (U) axisClass.newInstance().setSupplier(() -> g.left_stick_x);
-        leftStickY = (U) axisClass.newInstance().setSupplier(() -> g.left_stick_y);
-        leftStickButton = (T) buttonClass.newInstance().setSupplier(() -> g.left_stick_button);
+        leftStickX = axisClass.newInstance();
+        leftStickX.setSupplier(() -> g.left_stick_x);
+        leftStickY = axisClass.newInstance();
+        leftStickY.setSupplier(() -> g.left_stick_y);
+        leftStickButton = buttonClass.newInstance();
+        leftStickButton.setSupplier(() -> g.left_stick_button);
 
         //right stick
-        rightStickX = (U) axisClass.newInstance().setSupplier(() -> g.right_stick_x);
-        rightStickY = (U) axisClass.newInstance().setSupplier(() -> g.right_stick_y);
-        rightStickButton = (T) buttonClass.newInstance().setSupplier(() -> g.right_stick_button);
+        rightStickX = axisClass.newInstance();
+        rightStickX.setSupplier(() -> g.right_stick_x);
+        rightStickY = axisClass.newInstance();
+        rightStickY.setSupplier(() -> g.right_stick_y);
+        rightStickButton = buttonClass.newInstance();
+        rightStickButton.setSupplier(() -> g.right_stick_button);
 
         //triggers
-        leftTrigger = (U) axisClass.newInstance().setSupplier(() -> g.left_trigger);
-        rightTrigger = (U) axisClass.newInstance().setSupplier(() -> g.right_trigger);
+        leftTrigger = axisClass.newInstance();
+        leftTrigger.setSupplier(() -> g.left_trigger);
+        rightTrigger = axisClass.newInstance();
+        rightTrigger.setSupplier(() -> g.right_trigger);
 
     }
 
